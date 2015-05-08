@@ -16,24 +16,34 @@ public class IntToEng {
     // 数値を英訳する変換するメソッド
     static String translateEng(int n) {
     	String eng = "";
-    	if (10 <= n && n <= 19) { // ティーン
-    		eng = teens(n);
-    	} else if (n>99){
-    		int hund = n/100;
-    		if (hund > 0) {
-    			eng = eng + ones(hund) + "hundred";
-    			if(n%100!=0) eng += " ";
+    	if (n > 9) { // 10以上
+    		int thousands = n / 1000;
+    		if (thousands > 0) { // 三桁
+    			eng = eng + ones(thousands) + " thousand";
+    			if (n % 1000 != 0) eng += " ";
+    			n = n - thousands * 1000;
+    		}    	 	
+
+    		int hunds = n/100;
+    		if (hunds > 0) { // 三桁
+    			eng = eng + ones(hunds) + " hundred";
+    			if (n % 100 != 0) eng += " ";
+    			n = n - hunds * 100;
+    		}    	 	
+    		if (10 <= n && n <= 19) { // ティーン
+        		eng += teens(n);
+        		return eng;
     		}
-    		n=n/100;
-    	} else if (n > 19) { // 20以上二桁
     		
-    		int tensInt = n/10;
-    		if (tensInt > 1) eng = tens(tensInt);
+    		int tensInt = n/10; // 二桁
+    		if (tensInt > 1) eng += tens(tensInt);
     		if (n % 10 != 0) {
     			eng = eng + " " + ones(n-tensInt*10);
-    		} 		
+    		}
+    	
+    	
     	} else { // 一桁
-    		eng = ones(n);
+    		eng += ones(n);
     	}
         return eng;
     }
