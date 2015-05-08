@@ -18,7 +18,15 @@ public class IntToEng {
     	String eng = "";
     	if (10 <= n && n <= 19) { // ƒeƒB[ƒ“
     		eng = teens(n);
+    	} else if (n>99){
+    		int hund = n/100;
+    		if (hund > 0) {
+    			eng = eng + ones(hund) + "hundred";
+    			if(n%100!=0) eng += " ";
+    		}
+    		n=n/100;
     	} else if (n > 19) { // 20ˆÈã“ñŒ…
+    		
     		int tensInt = n/10;
     		if (tensInt > 1) eng = tens(tensInt);
     		if (n % 10 != 0) {
@@ -44,7 +52,7 @@ public class IntToEng {
     static String tens(int n) {
     	if(n==2) return "twenty";
     	if(n==3) return "thirty";
-    	if(n==4) return "fourty";
+    	if(n==4) return "forty";
     	if(n==5) return "fifty";
     	if(n==6) return "sixty";
     	if(n==7) return "seventy";
