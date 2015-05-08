@@ -54,7 +54,23 @@ public class IntToEngTest {
 		String expected = "three hundred twenty two";
 		String actual = IntToEng.translateEng(322);
 		assertThat(actual, equalTo(expected));
-		
 	}
-	
+	@Test
+	public void test110() {
+		String expected = "one hundred ten";
+		String actual = IntToEng.translateEng(110);
+		assertThat(actual, equalTo(expected));
+	}	
+	@Test
+	public void test8122() {
+		String expected = "eight thousand one hundred twenty two";
+		String actual = IntToEng.translateEng(8122);
+		assertThat(actual, equalTo(expected));
+	}
+	@Test
+	public void test1018() {
+		String expected = "one thousand eighteen";
+		String actual = IntToEng.translateEng(1018);
+		assertThat(actual, equalTo(expected));
+	}
 }
